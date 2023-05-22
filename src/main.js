@@ -1,6 +1,12 @@
 const FETCH_URL = "https://jsonplaceholder.typicode.com/posts";
+
 let blogs = [];
-const blogsListingSection = document.querySelector("#blogs");
+let blogTitle = "";
+let blogBody = "";
+
+const blogsListingSection = document.querySelector("#blogsListing");
+const blogTitleInput = document.querySelector("#blogTitle");
+const blogBodyInput = document.querySelector("#blogBody");
 
 (async () => {
   const response = await fetch(FETCH_URL);
@@ -11,17 +17,20 @@ const blogsListingSection = document.querySelector("#blogs");
 })();
 
 function renderBlogs(blogs) {
-  blogsListingSection.setAttribute("class", "flex flex-wrap gap-3 items-center justify-center");
+  blogsListingSection.setAttribute("class", "flex flex-wrap gap-7 items-center justify-center");
   blogs.map((blog) => appendEachBlog(blog));
 }
 
 function appendEachBlog(blog) {
   const eachBlog = document.createElement("article");
-  eachBlog.setAttribute("class", "w-[300px] border p-3 h-[350px] flex flex-col gap-3");
+  eachBlog.setAttribute(
+    "class",
+    "w-[300px] border bg-[rgb(27,27,39)] border-[rgb(107,114,128)] rounded-lg p-3 h-[350px] flex flex-col gap-3"
+  );
 
   eachBlog.innerHTML = `
-    <h1 class="font-bold text-2xl">${blog.title}</h1>
-    <p class="font-semibold line-clamp-3">${blog.body}</p>
+    <h1 class="font-bold line-clamp-2 text-lg">${blog.title}</h1>
+    <p class="font-md line-clamp-3">${blog.body}</p>
     <div class="flex flex-row gap-5">
       <button class="px-5 py-2 border-none outline-none bg-green-500 rounded-md font-semibold text-white">
         View Blog
@@ -33,4 +42,14 @@ function appendEachBlog(blog) {
   `;
 
   blogsListingSection.appendChild(eachBlog);
+}
+
+
+
+function createBlog() {
+  
+}
+
+function deleteBlog() {
+  
 }
