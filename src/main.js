@@ -7,14 +7,21 @@ let blogBody = "";
 const blogsListingSection = document.querySelector("#blogsListing");
 const blogTitleInput = document.querySelector("#blogTitle");
 const blogBodyInput = document.querySelector("#blogBody");
+const createBlogBTN = document.querySelector("#createBlogBTN");
+
 
 (async () => {
   const response = await fetch(FETCH_URL);
   const jsonData = await response.json();
   blogs = jsonData;
-  localStorage.setItem("blogs", JSON.stringify(jsonData))
+  localStorage.setItem("blogs", JSON.stringify(jsonData));
   renderBlogs(blogs);
+
+  handleBlogTitleInputChange(blogTitleInput);
+  handleBlogBodyInputChange(blogBodyInput);
+  createBlog(createBlogBTN);
 })();
+
 
 function renderBlogs(blogs) {
   blogsListingSection.setAttribute("class", "flex flex-wrap gap-7 items-center justify-center");
@@ -44,10 +51,24 @@ function appendEachBlog(blog) {
   blogsListingSection.appendChild(eachBlog);
 }
 
+function handleBlogTitleInputChange(blogTitleInput) {
+  blogTitleInput.addEventListener("change", (event) => {
+    blogTitle = event.target.value;
+  });
+}
 
+function handleBlogBodyInputChange(blogBodyInput) {
+  blogBodyInput.addEventListener("change", (event) => {
+    blogBody = event.target.value;
+  });
+}
 
-function createBlog() {
-  
+function createBlog(createBlogBTN) {
+  function submitBlogAndRender(event) {
+    event.preventDefault();
+    console.log(blogTitle, blogBody)
+  }
+  createBlogBTN.addEventListener("click", (event)=>submitBlogAndRender(event));
 }
 
 function deleteBlog() {

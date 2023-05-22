@@ -16,14 +16,18 @@
   </head>
   <body class="bg-[rgb(20,20,31)] text-white">
     <div id="app" class="bg-[rgb(20,20,31)] text-white">
-      <header class="bg-[rgb(20,20,31)] h-[8vh]">
+      <header class="bg-[rgb(20,20,31)] h-[8vh] flex items-center justify-between px-7">
+        <div>
+          <h1 class="text-3xl font-extrabold text-[rgb(240,46,101)]">Plea<span class="font-thin">sure</span>ly</h1>
+        </div>
       </header>
       <main>
         <section class="py-3 bg-[rgb(27,27,39)] w-[100%]">
           <form class="bg-[rgb(39,41,58)] p-3 w-[90%] mx-auto rounded-md flex flex-col gap-5">
             <div class="flex flex-col gap-1">
               <label for="blogTitle" class="text-[rgb(240,46,101)]">*Blog Title</label>
-              <input 
+              <input
+              name="blogTitle" 
               class="p-2 focus:border-[rgb(240,46,101)] text-white font-semibold bg-transparent focus:bg-[rgba(107,114,128,0.4)] outline-none border border-gray-600 rounded-lg"
               id="blogTitle"
               placeholder="Title is the first thing which reader encounters..."
@@ -32,11 +36,17 @@
             <div class="flex flex-col gap-1">
               <label class="text-[rgb(240,46,101)]" for="blogBody">* Blog Body (Feel Free to Write ✍️)</label>
               <textarea id="blogBody" rows="7"
+              name="blogBody"
+              value=""
               class="p-2 focus:border-[rgb(240,46,101)] text-white font-semibold bg-transparent focus:bg-[rgba(107,114,128,0.4)] outline-none border border-gray-600 rounded-lg"
               placeholder="Feel Free to Write Anything which comforts you..."
               >
               </textarea>
             </div>
+
+            <button type="submit" id="createBlogBTN">
+              Add Blog
+            </button>
           </form>
         </section>
         <section id="blogsListing">
